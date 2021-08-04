@@ -4,8 +4,9 @@ import (
 	"strconv"
 
 	"github.com/gin-gonic/gin"
+
 	"github.com/giofcosta/webapi-with-go/database"
-	"github.com/giofcosta/webapi-with-go/models"
+	"github.com/giofcosta/webapi-with-go/domain/entities"
 )
 
 func ShowBook(c *gin.Context) {
@@ -16,7 +17,7 @@ func ShowBook(c *gin.Context) {
 
 	db := database.GetDatabase()
 
-	var book models.Book
+	var book entities.Book
 	err = db.First(&book, id).Error
 	if err != nil {
 		c.JSON(400, gin.H{
@@ -53,7 +54,7 @@ func CreateBook(c *gin.Context) {
 func ShowBooks(c *gin.Context) {
 	db := database.GetDatabase()
 
-	var books []models.Book
+	var books []entities.Book
 
 	err := db.Find(&books).Error
 	if err != nil {
@@ -96,7 +97,7 @@ func DeleteBook(c *gin.Context) {
 
 	db := database.GetDatabase()
 
-	var book models.Book
+	var book entities.Book
 	err = db.Delete(&book, id).Error
 	if err != nil {
 		c.JSON(400, gin.H{
@@ -123,8 +124,8 @@ func GetId(c *gin.Context) (*int, error) {
 	return &newid, err
 }
 
-func BindJson(c *gin.Context) (*models.Book, error) {
-	var book models.Book
+func BindJson(c *gin.Context) (*entities.Book, error) {
+	var book entities.Book
 	err := c.ShouldBindJSON(&book)
 	if err != nil {
 		c.JSON(400, gin.H{
