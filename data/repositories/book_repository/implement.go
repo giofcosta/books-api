@@ -1,12 +1,16 @@
 package repositories
 
 import (
+	"errors"
+
 	"github.com/giofcosta/webapi-with-go/data/models"
 	"github.com/giofcosta/webapi-with-go/domain/entities"
-	"github.com/giofcosta/webapi-with-go/domain/repositories"
+	repositories "github.com/giofcosta/webapi-with-go/domain/repositories/book_repository"
 
 	"gorm.io/gorm"
 )
+
+var ErrBookNotFound = errors.New("Book not found")
 
 type bookRepository struct {
 	db *gorm.DB
@@ -22,6 +26,10 @@ func (r *bookRepository) GetBook(id int) (*entities.Book, error) {
 	err := r.db.First(&book, id).Error
 
 	if err != nil {
+		if errors.Is(err, gorm.ErrRecordNotFound) {
+			return nil, ErrBookNotFound
+		}
+
 		return nil, err
 	}
 
