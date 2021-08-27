@@ -4,6 +4,7 @@ import (
 	"log"
 
 	"github.com/gin-gonic/gin"
+	"github.com/giofcosta/webapi-with-go/app"
 	"github.com/giofcosta/webapi-with-go/routes"
 )
 
@@ -19,8 +20,8 @@ func NewServer() Server {
 	}
 }
 
-func (s *Server) Run() {
-	router := routes.ConfigureRoutes(s.server)
+func (s *Server) Run(app *app.Application) {
+	router := routes.ConfigureBookRoutes(s.server, *app.BookHandler)
 
 	log.Print("server is running at port: ", s.port)
 	log.Fatal(router.Run(":" + s.port))

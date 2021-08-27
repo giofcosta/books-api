@@ -25,18 +25,42 @@ func (uc *bookUseCase) Get(id int) (*entities.Book, error) {
 	return data, nil
 }
 
-func (uc *bookUseCase) GetAll() ([]*entities.Book, error) {
-	return nil, nil
+func (uc *bookUseCase) GetAll() (*[]entities.Book, error) {
+	data, err := uc.repository.GetBooks()
+	if err != nil {
+		log.Fatal(err.Error())
+		return nil, err
+	}
+
+	return data, nil
 }
 
 func (uc *bookUseCase) Create(book entities.Book) (*entities.Book, error) {
-	return nil, nil
+	data, err := uc.repository.CreateBook(book)
+	if err != nil {
+		log.Fatal(err.Error())
+		return nil, err
+	}
+
+	return data, nil
 }
 
 func (uc *bookUseCase) Update(book entities.Book) (*entities.Book, error) {
-	return nil, nil
+	data, err := uc.repository.UpdateBook(book)
+	if err != nil {
+		log.Fatal(err.Error())
+		return nil, err
+	}
+
+	return data, nil
 }
 
-func (uc *bookUseCase) Delete(id int) error {
-	return nil
+func (uc *bookUseCase) Delete(id int) (*entities.Book, error) {
+	data, err := uc.repository.DeleteBook(id)
+	if err != nil {
+		log.Fatal(err.Error())
+		return nil, err
+	}
+
+	return data, nil
 }

@@ -1,7 +1,6 @@
 package handlers
 
 import (
-	"fmt"
 	"net/http"
 	"strconv"
 
@@ -87,7 +86,7 @@ func (h *bookHandler) DeleteBook(c *gin.Context) {
 		return
 	}
 
-	err = h.usecase.Delete(id)
+	data, err := h.usecase.Delete(id)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, entities.ErrorResponse{
 			Message: "cannot delete the book: " + err.Error(),
@@ -95,7 +94,7 @@ func (h *bookHandler) DeleteBook(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusOK, entities.SuccessResponse{Data: fmt.Sprintf("id:%d. successfully deleted", id)})
+	c.JSON(http.StatusOK, entities.SuccessResponse{Data: data})
 }
 
 func GetId(c *gin.Context) (int, error) {

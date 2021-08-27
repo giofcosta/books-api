@@ -2,19 +2,20 @@ package routes
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/giofcosta/webapi-with-go/controllers"
+	handlers "github.com/giofcosta/webapi-with-go/api/handlers/book_handler"
 )
 
-func ConfigureRoutes(router *gin.Engine) *gin.Engine {
+func ConfigureBookRoutes(router *gin.Engine, handler handlers.BookHandler) *gin.Engine {
+
 	main := router.Group("api/v1")
 	{
 		books := main.Group("books")
 		{
-			books.GET("/:id", controllers.ShowBook)
-			books.GET("/", controllers.ShowBooks)
-			books.POST("/", controllers.CreateBook)
-			books.PUT("/", controllers.UpdateBook)
-			books.DELETE("/:id", controllers.DeleteBook)
+			books.GET("/:id", handler.ShowBook)
+			books.GET("/", handler.ShowBooks)
+			books.POST("/", handler.CreateBook)
+			books.PUT("/", handler.UpdateBook)
+			books.DELETE("/:id", handler.DeleteBook)
 		}
 	}
 
