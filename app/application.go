@@ -19,7 +19,8 @@ func NewApplication() *Application {
 }
 
 func buildBooksHandler() *handlers.BookHandler {
-	repository := repositories.NewBookRepository(database.GetDatabase())
+	db := database.GetDatabase()
+	repository := repositories.NewBookRepository(db)
 	useCase := usecases.NewBookUseCase(repository)
 	handler := handlers.NewBookHandler(useCase)
 
