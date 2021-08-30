@@ -2,7 +2,7 @@ package main
 
 import (
 	"github.com/giofcosta/webapi-with-go/app"
-	"github.com/giofcosta/webapi-with-go/database"
+	"github.com/giofcosta/webapi-with-go/data/database"
 
 	"github.com/giofcosta/webapi-with-go/server"
 )

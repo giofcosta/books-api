@@ -7,8 +7,16 @@ import (
 	"github.com/gin-gonic/gin"
 
 	"github.com/giofcosta/webapi-with-go/domain/entities"
-	usecases "github.com/giofcosta/webapi-with-go/domain/usecases/book_usecase"
+	"github.com/giofcosta/webapi-with-go/domain/usecases"
 )
+
+type BookHandler interface {
+	ShowBook(c *gin.Context)
+	CreateBook(c *gin.Context)
+	ShowBooks(c *gin.Context)
+	UpdateBook(c *gin.Context)
+	DeleteBook(c *gin.Context)
+}
 
 type bookHandler struct {
 	usecase usecases.BookUseCase

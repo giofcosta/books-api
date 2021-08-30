@@ -2,7 +2,7 @@ package routes
 
 import (
 	"github.com/gin-gonic/gin"
-	handlers "github.com/giofcosta/webapi-with-go/api/handlers/book_handler"
+	"github.com/giofcosta/webapi-with-go/api/handlers"
 )
 
 func ConfigureBookRoutes(router *gin.Engine, handler handlers.BookHandler) *gin.Engine {

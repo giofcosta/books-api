@@ -1,11 +1,10 @@
 package app
 
 import (
-	handlers "github.com/giofcosta/webapi-with-go/api/handlers/book_handler"
-	repositories "github.com/giofcosta/webapi-with-go/data/repositories/book_repository"
-	"github.com/giofcosta/webapi-with-go/database"
-
-	usecases "github.com/giofcosta/webapi-with-go/domain/usecases/book_usecase"
+	"github.com/giofcosta/webapi-with-go/api/handlers"
+	"github.com/giofcosta/webapi-with-go/data/database"
+	"github.com/giofcosta/webapi-with-go/data/repositories"
+	"github.com/giofcosta/webapi-with-go/domain/usecases"
 )
 
 type Application struct {

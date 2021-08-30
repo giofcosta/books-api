@@ -3,10 +3,10 @@ package repositories
 import (
 	"errors"
 
-	app "github.com/giofcosta/webapi-with-go/app/errors"
+	common "github.com/giofcosta/webapi-with-go/common/errors"
 	"github.com/giofcosta/webapi-with-go/data/models"
 	"github.com/giofcosta/webapi-with-go/domain/entities"
-	repositories "github.com/giofcosta/webapi-with-go/domain/repositories/book_repository"
+	"github.com/giofcosta/webapi-with-go/domain/repositories"
 
 	"gorm.io/gorm"
 )
@@ -26,7 +26,7 @@ func (r *bookRepository) GetBook(id int) (*entities.Book, error) {
 
 	if err != nil {
 		if errors.Is(err, gorm.ErrRecordNotFound) {
-			return nil, app.ErrBookNotFound
+			return nil, common.ErrBookNotFound
 		}
 
 		return nil, err
@@ -70,6 +70,7 @@ func (r *bookRepository) UpdateBook(book entities.Book) (*entities.Book, error) 
 	if err != nil {
 		return nil, err
 	}
+	//TODO: Automapper
 	//var ebook entities.Book
 	//automapper.MapLoose(model, &ebook)
 
