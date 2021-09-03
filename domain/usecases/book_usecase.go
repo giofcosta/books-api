@@ -26,7 +26,6 @@ func NewBookUseCase(repository repositories.BookRepository) BookUseCase {
 func (uc *bookUseCase) Get(id int) (*entities.Book, error) {
 	data, err := uc.repository.GetBook(id)
 	if err != nil {
-		log.Fatal(err.Error())
 		return nil, err
 	}
 
